@@ -40,12 +40,11 @@ The suite maintains a cryptographic baseline of all files, including:
 - Timestamps  
 - Hash values  
 
-It detects:
-
-- **New files**  
-- **Deleted files**  
-- **Modified files**  
-- **Corrupted files (bit rot)** — files whose hash value has changed even though the timestamp is the same.
+**It detects:** 
+- New files  
+- Deleted files  
+- Modified files  
+- Corrupted files (bit rot) — files whose hash value has changed even though the timestamp is the same.
 
 If PAR2 recovery data exists, the suite can automatically repair corrupted files.  
 Recovered files are written back safely, and corrupted originals are preserved with a `.1` suffix.
@@ -105,8 +104,44 @@ Sequential read/write validation across all free space.
 ## Notes
 
 - Flash drives wear out over time — regular scans help detect early failure.  
-- Bit rot can affect any storage device; the integrity baseline allows detection of even single‑bit corruption.  
+- Bit rot can affect any storage device; the integrity baseline allows detection of even single‑bit corruption.
+
+  
 - PAR2 recovery data is optional but strongly recommended for archival drives.  
 - Capacity validation protects against counterfeit or defective flash drives.
 
 ---
+## Building From Source
+
+To build from source:
+
+1. Clone this repository  
+2. Open the project in your preferred development environment  
+3. Build using your standard toolchain  
+
+(You can expand this section later with exact build steps for C#, C++, Python, or whatever languages you use.)
+
+---
+
+## Contributing
+
+Contributions are welcome.  
+By submitting code, you agree that your contributions will be licensed under the GPLv3.
+
+See `CONTRIBUTING.md` for details.
+
+---
+
+## Disclaimer
+
+The software is provided **“AS IS”**, without warranty of any kind.  
+You assume all risks associated with using the software.
+
+See the LICENSE and AUA for full details.
+
+---
+
+## Contact
+
+For questions, suggestions, or feedback, please open an issue on GitHub.
+
