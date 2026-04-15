@@ -109,7 +109,7 @@ Last Updated: 2026/04/12
 	memory and CPU utilization are varying, the program is likely running properly. 
 	Just be patient, and it should eventually complete it's required procedures.
 	When the files "baseline.xml" and "current_check.xml" files become larger than
-	zero bytes, the program will be able to proceed to it's next steps of 
+	zero bytes, the program will be able to proceed to it's next step of 
 	operation.
 
 11) Q	What are are some of the limitations of this software
