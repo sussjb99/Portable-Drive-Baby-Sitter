@@ -122,9 +122,9 @@ Last Updated: 2026/04/12
 12) Q	Why do you need financial Support?
 
     A	If I receive sufficient financial support, I will first utilize the funding
-	to procure a certificate for signing my executables. This is so antivirus software
+	to procure a trusted certificate for signing my executables. This is so antivirus software
 	will not try and delete it or prevent them from running or being istalled. In 
-	addtion, I will use the funding to procure web hosting services and procure a domain name. 
+	addition, I will use the funding to procure web hosting services and procure a domain name. 
 	And then I will use the funding to support my future development and support of this
 	software.
 
