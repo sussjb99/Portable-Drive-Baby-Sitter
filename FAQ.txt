@@ -104,7 +104,7 @@ Last Updated: 2026/04/12
 	crashed?
 
     A	Hashing large directories can take a long time to complete, especially on slower USB 
-	devices. It is normal for CPU usage to fluctuate as hashdeep processes batches
+	devices. It is normal for CPU usage to fluctuate as hashdeep64 processes batches
  	of files. Using task Manager, if the hashdeep64.exe is still running and the
 	memory and CPU utilization are varying, the program is likely running properly. 
 	Just be patient, and it should eventually complete it's required procedures.
