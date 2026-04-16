@@ -39,7 +39,7 @@
 
 **SPECIAL NOTES**
 ---
-I am the author of all the exe, ps1, and bat programs exception of:
+I am the author of all the exe, ps1, and bat programs except:
 - par2.exe                   # https://github.com/sussjb99/par2cmdline--filelist.txt
 - hashdeep64.exe             # https://github.com/jessek/hashdeep
 - smartctl.exe               # https://github.com/smartmontools/smartmontools
