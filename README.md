@@ -134,7 +134,7 @@ To build from source:
 2. Open the project in your preferred development environment  
 3. Build using your standard toolchain  
 
-(You can expand this section later with exact build steps for C#, C++, Python, or whatever languages you use.)
+
 
 ---
 
