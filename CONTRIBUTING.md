@@ -83,7 +83,7 @@ Instead, contact the maintainer privately through GitHub’s private issue featu
 
 By contributing to this project, you agree that your contributions will be licensed under:
 
-**MIT**
+**MIT LICENSING**
 
 This ensures the project remains open and accessible to everyone.
 
