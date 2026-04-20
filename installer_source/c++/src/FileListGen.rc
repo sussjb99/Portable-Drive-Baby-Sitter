@@ -14,11 +14,11 @@ BEGIN
         BLOCK "040904b0"   // English (US), Unicode
         BEGIN
             VALUE "CompanyName", "sussjb99"
-            VALUE "FileDescription", "Drive Baby Sitter - File List Generator"
+            VALUE "FileDescription", "PUDIS - File List Generator"
             VALUE "FileVersion", "1.0.0.0"
             VALUE "InternalName", "FileListGen.exe"
             VALUE "OriginalFilename", "FileListGen.exe"
-            VALUE "ProductName", "Portable Drive Baby Sitter - Integrity Suite"
+            VALUE "ProductName", "PUDIS (Portable‑USB‑Drive‑Integrity‑Suite)"
             VALUE "ProductVersion", "1.0.0.0"
             VALUE "LegalCopyright", "Copyright (c) 2026 sussjb99"
         END
