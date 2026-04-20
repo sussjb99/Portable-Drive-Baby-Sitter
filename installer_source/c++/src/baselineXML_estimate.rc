@@ -14,11 +14,11 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "CompanyName", "sussjb99"
-            VALUE "FileDescription", "Portable Drive Baby Sitter - Integrity Scanner"
+            VALUE "FileDescription", "PUDIS - Integrity Scanner"
             VALUE "FileVersion", "1.0.0.0"
             VALUE "InternalName", "baselineXML_estimator.exe"
             VALUE "OriginalFilename", "baselineXML_estimator.exe"
-            VALUE "ProductName", "Portable Drive Baby Sitter - Integrity Suite"
+            VALUE "ProductName", "PUDIS (Portable‑USB‑Drive‑Integrity‑Suite)"
             VALUE "ProductVersion", "1.0.0.0"
             VALUE "LegalCopyright", "Copyright (c) 2026 sussjb99"
         END
