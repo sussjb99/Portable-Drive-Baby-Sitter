@@ -1,5 +1,5 @@
 :: ============================================================
-:: Portable Drive Baby Sitter - Integrity Suite
+:: Portable USB Drive Integrity Suite
 :: File: pshell.bat
 :: Author: sussjb99
 :: Version: 1.0

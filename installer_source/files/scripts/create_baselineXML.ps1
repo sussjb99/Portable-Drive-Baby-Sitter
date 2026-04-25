@@ -1,9 +1,9 @@
 # ============================================================
-# Portable Drive Baby Sitter - Integrity Suite
+# Portable USB Drive Integrity Suite
 # File: create_baselineXML.ps1
 # Author: sussjb99
-# Version: 1.0
-# Last Modified: <2026-04-12>
+# Version: 1.1
+# Last Modified: <2026-04-25>
 # Copyright (c) 2026 sussjb99. All rights reserved.
 # Licensed under the MIT License. See LICENSE.txt for details.
 # ============================================================
@@ -16,7 +16,7 @@ if ([string]::IsNullOrWhiteSpace($DriveLetter)) { exit 1 }
 
 $JustDrive = $DriveLetter.Substring(0,1) + ":"
 $CleanDrive = $JustDrive + "\"
-$ExcludeToken = "integrity_check"
+$ExcludeToken = "Integrity_Check"
 
 $Bin          = "$CleanDrive$ExcludeToken\bin"
 $Logs         = "$CleanDrive$ExcludeToken\logs"
@@ -42,16 +42,28 @@ if (-not (Test-Path $AuditList)) { Write-Host "Error: FileListGen failed."; exit
 $FileCount = (Get-Content $AuditList).Count
 
 # --- 3. Generate Master Baseline XML ---
-# Since the .bat file handled the estimate and confirmation, we start immediately.
-Write-Host "Step 2: Hashing $FileCount files..." -ForegroundColor Yellow
+Write-Host "Step 2: Hashing $FileCount files... " -ForegroundColor Yellow -NoNewline
 
-# Use the list to generate the XML
-# TRYING ANOTHER OUTPUT FORMAT METHOD & $HashDeep -c md5 -l -d -f "$AuditList" | Out-File -FilePath "$Baseline" -Encoding utf8
-# & $HashDeep -c md5 -l -d -f "$AuditList" | Set-Content -Path "$Baseline" -Encoding utf8
-# & $HashDeep -c md5 -l -d -j 1 -f "$AuditList" | Set-Content "$Baseline" -Encoding utf8
-& $HashDeep -c md5 -l -d -f "$AuditList" | Set-Content -Path "$Baseline" -Encoding utf8
+# Start the hashing process as a background job so the spinner can run
+$HashJob = Start-Job -ScriptBlock {
+    param($exe, $list, $output)
+    & $exe -c md5 -l -d -f "$list" | Set-Content -Path "$output" -Encoding utf8
+} -ArgumentList $HashDeep, $AuditList, $Baseline
 
+# --- Spinner Animation ---
+$spinner = @('|', '/', '-', '\')
+$i = 0
 
+while ($HashJob.State -eq "Running") {
+    Write-Host "`rStep 2: Hashing $FileCount files... $($spinner[$i % 4])" -ForegroundColor Yellow -NoNewline
+    $i++
+    Start-Sleep -Milliseconds 150
+}
+
+# Clean up the job and move to a new line
+Receive-Job -Job $HashJob | Out-Null
+Remove-Job -Job $HashJob
+Write-Host "`rStep 2: Hashing $FileCount files... Done!   " -ForegroundColor Yellow
 
 # --- 4. Cleanup ---
 # if (Test-Path $AuditList) { Remove-Item $AuditList -Force }

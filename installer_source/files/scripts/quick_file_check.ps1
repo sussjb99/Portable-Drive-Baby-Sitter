@@ -1,5 +1,5 @@
 # ============================================================
-# Portable Drive Baby Sitter - Integrity Suite
+# Portable USB Drive Integrity Suite
 # File: quick_file_check.ps1
 # Author: sussjb99
 # Version: 1.0
@@ -46,16 +46,29 @@ if (-not (Test-Path $Logs)) { New-Item -Path $Logs -ItemType Directory -Force | 
 if (-not (Test-Path $AuditList)) { Write-Host "Error: FileListGen failed."; exit 4 }
 $FileCount = (Get-Content $AuditList).Count
 
-# Step 2 UI Update
-Write-Host "Step 2: Hashing $FileCount files..." -ForegroundColor Yellow
-Write-Host "      [Scanning hardware; please wait...]" -ForegroundColor Gray
-Push-Location $CleanDrive
+# --- Step 2: Hashing with Spinner ---
+Write-Host "Step 2: Hashing $FileCount files... " -ForegroundColor Yellow -NoNewline
 
-# Generate the current XML using standard paths (using md5 to match baseline)
-#6 threads  & $HashDeep -c md5 -l -d -f "$AuditList" | Out-File -FilePath "$Current" -Encoding utf8
-& $HashDeep -c md5 -l -d -f "$AuditList" | Set-Content -Path "$Current" -Encoding utf8
+# Start the background job using your existing variables
+$HashJob = Start-Job -ScriptBlock {
+    param($HashDeep, $AuditList, $Current, $CleanDrive)
+    Set-Location $CleanDrive
+    & $HashDeep -c md5 -l -d -f "$AuditList" | Set-Content -Path "$Current" -Encoding utf8
+} -ArgumentList $HashDeep, $AuditList, $Current, $CleanDrive
 
-Pop-Location
+# Spinner loop
+$spinner = @('|', '/', '-', '\')
+$i = 0
+while ($HashJob.State -eq "Running") {
+    Write-Host "`rStep 2: Hashing $FileCount files... $($spinner[$i % 4]) " -ForegroundColor Yellow -NoNewline
+    $i++
+    Start-Sleep -Milliseconds 150
+}
+
+# Finalize the job
+Receive-Job -Job $HashJob | Out-Null
+Remove-Job -Job $HashJob
+Write-Host "`rStep 2: Hashing $FileCount files... Done!          " -ForegroundColor Yellow
 
 if (Test-Path $AuditList) { Remove-Item $AuditList -Force }
 
@@ -179,9 +192,9 @@ Set-XmlValue $file "FilesChecked" "$($cFiles.Count)"
 Set-XmlValue $file "CorruptFiles" "$($corList.Count)"
 Set-XmlValue $file "IntegrityGrade" $(if ($corList.Count -gt 0) { "Low" } else { "High" })
 
-$surf = $root.SelectSingleNode("SurfaceScanInfo")
-Set-XmlValue $surf "LastScanDate" $timestamp
-Set-XmlValue $surf "SurfaceGrade" $(if ($corList.Count -gt 0) { "Caution" } else { "Healthy" })
+#   $surf = $root.SelectSingleNode("SurfaceScanInfo")
+#   Set-XmlValue $surf "LastScanDate" $timestamp
+#   Set-XmlValue $surf "SurfaceGrade" $(if ($corList.Count -gt 0) { "Caution" } else { "Healthy" })
 
 # --- 6. Intelligent Split-Parity Repair ---
 if ($corList.Count -gt 0) {

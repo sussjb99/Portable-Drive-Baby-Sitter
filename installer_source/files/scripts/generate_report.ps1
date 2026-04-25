@@ -1,5 +1,5 @@
 # ============================================================
-# Portable Drive Baby Sitter - Integrity Suite
+# Portable USB Drive Integrity Suite
 # File: generate_report.ps1
 # Author: sussjb99
 # Version: 1.0
