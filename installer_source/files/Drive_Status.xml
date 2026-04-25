@@ -1,18 +1,18 @@
 <DriveBabySitter>
   <Metadata>
-    <LastHardwareProbe>2026-04-05 09:12:48</LastHardwareProbe>
+    <LastHardwareProbe>0000-00-00 00:00:00</LastHardwareProbe>
   </Metadata>
   <HardwareIdentity>
-    <Model>Kingston DataTraveler II USB Device</Model>
-    <Serial>5B511D01A39E</Serial>
+    <Model>Model</Model>
+    <Serial>Seria Number </Serial>
     <Interface>USB</Interface>
-    <Technology>Flash</Technology>
-    <FileSystem>FAT32</FileSystem>
+    <Technology>Technology</Technology>
+    <FileSystem>File System</FileSystem>
   </HardwareIdentity>
   <StorageCapacity>
-    <TotalGB>0.96</TotalGB>
-    <UsedGB>0.48</UsedGB>
-    <FreeGB>0.47</FreeGB>
+    <TotalGB>00.00</TotalGB>
+    <UsedGB>00.00</UsedGB>
+    <FreeGB>00.00</FreeGB>
   </StorageCapacity>
   <HardwareVitals>
     <PowerOnHours>N/A</PowerOnHours>
@@ -28,19 +28,18 @@
     <SmartStatus>N/A</SmartStatus>
   </SmartHealthStatus>
   <FileIntegrityScan>
-    <LastScanDate>2026-04-04 14:10:02</LastScanDate>
-    <FilesChecked>1332</FilesChecked>
+    <LastScanDate>0000-00-00 00:00:00</LastScanDate>
+    <FilesChecked>0</FilesChecked>
     <CorruptFiles>0</CorruptFiles>
-    <IntegrityGrade>High</IntegrityGrade>
+    <IntegrityGrade>N/A</IntegrityGrade>
   </FileIntegrityScan>
   <SurfaceScanInfo>
-    <SurfaceScanDate>2026-04-03 13:38:27</SurfaceScanDate>
-    <ActualTimeTaken>00:18:38</ActualTimeTaken>
-    <SurfaceGrade>Healthy</SurfaceGrade>
-    <StabilityScore>28.8</StabilityScore>
-    <AvgReadSpeed>6.54</AvgReadSpeed>
-    <ScanCoverage>99</ScanCoverage>
+    <SurfaceScanDate>0000-00-00 00:00:00</SurfaceScanDate>
+    <ActualTimeTaken>00:00:00</ActualTimeTaken>
+    <SurfaceGrade>N/A</SurfaceGrade>
+    <StabilityScore>000.0</StabilityScore>
+    <AvgReadSpeed>000.00</AvgReadSpeed>
+    <ScanCoverage>0</ScanCoverage>
     <ErrorsDetected>0</ErrorsDetected>
-    <LastScanDate>2026-04-04 14:10:02</LastScanDate>
   </SurfaceScanInfo>
 </DriveBabySitter>
