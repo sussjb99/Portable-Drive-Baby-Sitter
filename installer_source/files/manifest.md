@@ -8,7 +8,7 @@ This software performs low-level hardware analysis to ensure data integrity on U
 ## 2. File Inventory & Integrity Hashes
 | Path | Purpose | SHA-256 Hash (Integrity Check) |
 | :--- | :--- | :--- |
-| `!VERIFY_INTEGRITY.BAT` | Main UI and menu controller | [SHA256_HASH_HERE] |
+| `!VERIFY_INTEGRITY.BAT` | Main UI and menu controller | [SHA256_77AD6897D9A0420E81F9D85A313118D14F60F9707E4F35D0E5B64B045BFFCF7B] |
 | `bin/deviceinfo.exe` | Gathers storage device hardware specs | [SHA256_HASH_HERE] |
 | `bin/full_probe.exe` | Identifies all connected storage volumes | [SHA256_HASH_HERE] |
 | `bin/surface_scan.exe` | Performs sector-level read/write tests | [SHA256_HASH_HERE] |
