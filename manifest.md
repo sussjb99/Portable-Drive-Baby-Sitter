@@ -5,7 +5,35 @@
 ## 1. Technical Justification
 This software performs low-level hardware analysis to ensure data integrity on USB storage devices. Because it interacts directly with disk sectors to bypass OS caching, certain security scanners may flag these behaviors as "Defense Evasion" (T1006) or "Discovery" (T1082/T1083). These actions are strictly functional and required for accurate hardware stress testing.
 
-## 2. File Inventory & Integrity Hashes
+## 2. Application Structure & File Purposes
+The following map outlines the functional organization of the suite:
+```directory
+\
+├── !VERIFY_INTEGRITY.BAT           # Main UI and menu controller
+└── Integrity_Check\                # Root application folder
+    ├── Drive_status.xml            # Unified health and scan log
+    ├── Help.txt                    # Help documentation
+    ├── bin\                        # Compiled binaries and engines
+    │   ├── deviceinfo.exe          # Gathers hardware specs of identified device
+    │   ├── full_probe.exe          # Identifies all connected storage devices
+    │   ├── par2.exe                # Customized parity engine for recovery
+    │   ├── surface_scan.exe        # Performs sector-level read/write validation
+    │   ├── hashdeep64.exe          # High-performance file hashing engine
+    │   ├── smartctl.exe            # Reports SMART hardware health info
+    │   ├── corruptor.exe           # Internal tool to simulate bit-rot for testing
+    │   ├── FileListGen.exe         # Quickly generates file listings
+    │   ├── baselineXML_estimate.exe# Estimates time for baseline rebuilds
+    │   └── scantime_estimate.exe   # Estimates time for surface scans
+    └── scripts\                    # Core logic execution scripts
+        ├── create_baseXML.ps1      # Generates initial integrity baseline
+        ├── create_recovery.ps1     # Generates par2 data recovery sets
+        ├── full_surface_scan.bat   # Controller for full surface validation
+        ├── quick_file_check.ps1    # Checks for bit-rot and changes (Protects C:)
+        ├── generate_report.ps1     # Generates HTML scan results
+        ├── pager.ps1               # Documentation navigation helper
+        └── pshell.bat              # Wrapper for PowerShell execution
+``` 
+## 3. File Inventory & Integrity Hashes
 | Path | SHA-256 Hash |
 | :--- | :--- |
 | !VERIFY_INTEGRITY.BAT | `77AD6897D9A0420E81F9D85A313118D14F60F9707E4F35D0E5B64B045BFFCF7B` |
@@ -26,14 +54,14 @@ This software performs low-level hardware analysis to ensure data integrity on U
 | I:\Integrity_Check\scripts\quick_surface_scan.bat | `BB090434B97537F67CEBD4A6644B0501A6D54FE5622D996F3CE8FACA390635AF` |
 
 
-## 3. Behavioral Disclosure (MITRE ATT&CK Mapping)
-To assist security auditors and automated scanners, we disclose the following expected behaviors[cite: 3]:
-* **T1006 (Direct Volume Access):** Required by `surface_scan.exe` to verify physical sectors[cite: 3].
-* **T1055 (Process Injection):** High-performance threading used for parallel parity calculation in `par2.exe`[cite: 3].
-* **T1082/T1083 (Discovery):** Used to identify the correct physical drive and prevent accidental data loss on the system drive (C:)[cite: 3].
+## 4. Behavioral Disclosure (MITRE ATT&CK Mapping)
+To assist security auditors and automated scanners, we disclose the following expected behaviors:
+* **T1006 (Direct Volume Access):** Required by `surface_scan.exe` to verify physical sectors.
+* **T1055 (Process Injection):** High-performance threading used for parallel parity calculation in `par2.exe`.
+* **T1082/T1083 (Discovery):** Used to identify the correct physical drive and prevent accidental data loss on the system drive (C:).
 * **T1553.002 (Code Signing):** Files are currently **Self-Signed** due to project funding status[cite: 3].
 
-## 4. External Dependencies
+## 5. External Dependencies
 The following binaries are included as open-source dependencies:
 * **par2.exe**: Forked from [sussjb99/par2cmdline](https://github.com/sussjb99/par2cmdline--filelist.txt). (Modified to support @filelist.txt).
 * **hashdeep64.exe**: Sourced from [jessek/hashdeep](https://github.com/jessek/hashdeep).
